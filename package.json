@@ -1,0 +1,16 @@
+{
+  "name": "alexa-skill",
+  "version": "1.0.0",
+  "description": "POC to learn more about how to build alexa skills",
+  "main": "index.js",
+  "scripts": {
+    "start": "chmod +x ./init.sh && ./init.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-personal:starkland/santa-cruz-skill.git"
+  },
+  "keywords": [],
+  "author": "thulioph",
+  "license": "ISC"
+}
