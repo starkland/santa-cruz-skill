@@ -3,8 +3,10 @@ const cheerio = require('cheerio')
 const fastify = require('fastify')({ logger: true })
 
 const MAX_QTD_ARTICLES = 6
+const PORT = (process.env.PORT || 3000)
+const HOST = (process.env.HOST || '0.0.0.0')
 
-const getApiURL = () => {
+const buildResourceURL = () => {
 	const searchParams = new URLSearchParams({
 		tipo: 'noticia',
 		quantidade: MAX_QTD_ARTICLES,
@@ -19,9 +21,9 @@ const getApiURL = () => {
 
 const getData = () => {
 	const options = { method: 'GET' }
-	const API_URL = getApiURL()
+	const RESOURCE_URL = buildResourceURL()
 
-	return fetch(API_URL, options).then(res => res.text()).then(body => body)
+	return fetch(RESOURCE_URL, options).then(res => res.text()).then(body => body)
 }
 
 const formatPayload = (payload) => {
@@ -53,7 +55,7 @@ fastify.get('/santa-cruz', async (request, reply) => {
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen(3000)
+    await fastify.listen(PORT, HOST)
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)

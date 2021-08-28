@@ -4,7 +4,10 @@
   "description": "POC to learn more about how to build alexa skills",
   "main": "index.js",
   "scripts": {
-    "start": "chmod +x ./init.sh && ./init.sh"
+    "api-start": "npm --prefix ./api/ run start",
+    "prod": "NODE_ENV=production npm run api-start",
+    "dev": "NODE_ENV=development npm run api-start",
+    "start": "npm --prefix ./api/ run ci"
   },
   "repository": {
     "type": "git",
