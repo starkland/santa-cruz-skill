@@ -2,7 +2,7 @@
 
 > POC to learn more about how to build alexa skills.
 
-- [Live API]()
+- [Live API](https://santa-cruz-skill.herokuapp.com/santa-cruz)
 - [Test you request using Postman](https://documenter.getpostman.com/view/64448/TzzGJEJH)
 
 ## How it Works
@@ -82,7 +82,25 @@ To start a development server under `http://localhost:3000`:
 $ npm run start
 ```
 
-> An easy way to test your local API, interacting with the amazon hosted services is to expose a public tunnel using [`ngrok`](https://ngrok.com/).
+#### ngrok
+
+An easy way to test your local API, interacting with the amazon hosted services is to expose a public tunnel using [`ngrok`](https://ngrok.com/).
+
+#### heroku
+
+Here are some useful commands:
+
+```sh
+$ heroku logs --tail --app=<app-name>
+```
+
+```sh
+$ heroku buildpacks --app=<app-name>
+```
+
+```sh
+$ heroku apps:info --app=<app-name>
+```
 
 ### lambda
 
