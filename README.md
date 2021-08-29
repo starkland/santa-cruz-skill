@@ -2,7 +2,7 @@
 
 > POC to learn more about how to build alexa skills.
 
-- [Live API]()
+- [Live API](https://santa-cruz-skill.herokuapp.com/santa-cruz)
 - [Test you request using Postman](https://documenter.getpostman.com/view/64448/TzzGJEJH)
 
 ## How it Works
