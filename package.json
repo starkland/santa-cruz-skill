@@ -7,7 +7,8 @@
     "api-start": "npm --prefix ./api/ run start",
     "prod": "NODE_ENV=production npm run api-start",
     "dev": "NODE_ENV=development npm run api-start",
-    "start": "npm --prefix ./api/ run ci"
+    "start": "npm --prefix ./api/ run ci",
+    "landing": "./node_modules/.bin/http-server -d index.html"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   },
   "keywords": [],
   "author": "thulioph",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^13.0.1"
+  }
 }

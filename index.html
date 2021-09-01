@@ -5,8 +5,53 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Hello World!</title>
+
+	<style>
+		#content {
+			font-size: 20px;
+		}
+	</style>
+
 </head>
 <body>
 	<h1>We're still building a great page!</h1>
+	<h2>While you're waiting you can read the latest news:</h2>
+
+	<p id="content"></p>
+
+	<script>
+		const content = document.querySelector('#content');
+
+		const displayContent = (str) => {
+			content.innerHTML = str;
+		}
+
+		const getData = () => {
+			const API_URL = 'https://santa-cruz-skill.herokuapp.com/santa-cruz';
+
+			const options = {
+				method: 'GET',
+				headers: {
+					Accept: 'application/json',
+				}
+			};
+
+			const request = fetch(API_URL, options);
+
+			return request
+				.then((response) => {
+					return response.json()
+				})
+				.then(data => {
+					const { payload } = data
+					displayContent(payload.content)
+				})
+				.catch((e) => {
+					console.info("there is an error:", e)
+				});
+		}
+
+		getData()
+	</script>
 </body>
 </html>
