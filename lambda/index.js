@@ -11,7 +11,7 @@ const https = require('https');
 const httpGet = () => {
   return new Promise(((resolve, reject) => {
     var options = {
-        host: '217a-2804-14d-5481-8e20-10b3-1c0a-9174-7b1b.ngrok.io', // API_URL
+        host: 'santa-cruz-skill.herokuapp.com',
         port: 443,
         path: '/santa-cruz',
         method: 'GET',
@@ -73,10 +73,9 @@ const GetFactIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetFactIntent';
     },
     async handle(handlerInput) {
-        // const speakOutput = 'Eu vou te contar uma notícia!';
-        
         // request to external API
         const response = await httpGet();
+
         const speakOutput = response.payload.content + '; isso é tudo por hoje.'; // fala aqui as notícias
 
         return handlerInput.responseBuilder
@@ -92,11 +91,11 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const speakOutput = 'Você pode dizer últimas notícias e eu lhe conto tudo sobre o Santa Cruz.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput)
+            // .reprompt(speakOutput)
             .getResponse();
     }
 };

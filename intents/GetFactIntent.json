@@ -1,7 +1,7 @@
 {
 	"interactionModel": {
 	    "languageModel": {
-		"invocationName": "santa cruz teste",
+		"invocationName": "santa cruz noticias",
 		"intents": [
 		    {
 			"name": "AMAZON.CancelIntent",
@@ -21,7 +21,7 @@
 			"samples": [
 			    "ultimas noticias",
 			    "novidades",
-			    "ultimas novidades"
+			    "o que está acontecendo"
 			]
 		    },
 		    {

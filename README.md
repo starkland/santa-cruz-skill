@@ -5,6 +5,12 @@
 - [Live API](https://santa-cruz-skill.herokuapp.com/santa-cruz)
 - [Test you request using Postman](https://documenter.getpostman.com/view/64448/TzzGJEJH)
 
+## How to Use
+
+Once you've installed this skill, you can say:
+
+> Alexa, inicie o **Santa Cruz Notícias**
+
 ## How it Works
 
 The idea is to know the latest news regarding [Santa Cruz](http://www.santacruzpe.com.br/) soccer team. This repo contains **three different layers** and each one is explained below.
