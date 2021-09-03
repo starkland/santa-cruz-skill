@@ -48,6 +48,7 @@ const LaunchRequestHandler = {
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
+            .withShouldEndSession(false)
             .getResponse();
     }
 };
@@ -81,6 +82,7 @@ const GetFactIntentHandler = {
         return handlerInput.responseBuilder
             .speak(speakOutput)
             //.reprompt('Você deseja ouvir mais notícias? Basta falar, mais notícias.')
+            .withShouldEndSession(false)
             .getResponse();
     }
 };
@@ -96,6 +98,7 @@ const HelpIntentHandler = {
         return handlerInput.responseBuilder
             .speak(speakOutput)
             // .reprompt(speakOutput)
+            .withShouldEndSession(false)
             .getResponse();
     }
 };
