@@ -6,6 +6,8 @@ const MAX_QTD_ARTICLES = 6
 const PORT = (process.env.PORT || 3000)
 const HOST = (process.env.HOST || '0.0.0.0')
 
+const datesRegex = new RegExp(/[0-9]{2}\D+[0-9]{2}/g) // remove dates from string
+
 const buildResourceURL = () => {
 	const searchParams = new URLSearchParams({
 		tipo: 'noticia',
@@ -26,23 +28,42 @@ const getData = () => {
 	return fetch(RESOURCE_URL, options).then(res => res.text()).then(body => body)
 }
 
+const mapContent = (str) => {
+	const arr = str.split('  ')
+
+	const mapped = arr.map((el) => {
+		return {
+			date: el.match(datesRegex)[0],
+			text: el.replace(datesRegex, '')
+		}
+	})
+
+	return mapped
+}
+
+const normalizeToSpeech = (str) => {
+	return str.replace(datesRegex, '').split('  ').slice(1, 7).join('. ')
+}
+
 const formatPayload = (payload) => {
 	const $ = cheerio.load(payload, {
 		xml: { normalizeWhitespace: true }
 	})
 
 	const text = $('.texto').text()
-	const dates = new RegExp(/[0-9]{2}\D+[0-9]{2}/g) // remove dates from string
-	const content = text.replace(dates, '').split('  ').slice(1, 7).join('. ')
+
+	const contentMapped = mapContent(text)
+	const content = normalizeToSpeech(text)
 
 	return {
+		contentMapped,
 		content,
 		length: MAX_QTD_ARTICLES
 	}
 }
 
 // Declare a route
-fastify.get('/santa-cruz', async (request, reply) => {
+fastify.get('/news', async (request, reply) => {
 	const data = await getData()
 	const payload = formatPayload(data)
 
@@ -50,7 +71,7 @@ fastify.get('/santa-cruz', async (request, reply) => {
 		.code(200)
 		.header('Content-Type', 'application/json; charset=utf-8')
 		.header('Access-Control-Allow-Origin', '*')
-		.send({ path: 'santa-cruz', payload })
+		.send({ path: 'news', payload })
 })
 
 // Run the server!
