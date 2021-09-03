@@ -34,7 +34,7 @@ const mapContent = (str) => {
 	const mapped = arr.map((el) => {
 		return {
 			date: el.match(datesRegex)[0],
-			text: el.replace(datesRegex, '')
+			text: el.replace(datesRegex, '').trim()
 		}
 	})
 
