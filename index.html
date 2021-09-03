@@ -1,57 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Hello World!</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<style>
-		#content {
-			font-size: 20px;
-		}
-	</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
 
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="./static/style.css">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <title>Santa Cruz Notícias</title>
 </head>
 <body>
-	<h1>We're still building a great page!</h1>
-	<h2>While you're waiting you can read the latest news:</h2>
+  <header id="main-header">
+    <div class="grid">
+      <a href="/" class="logo"><h1>Santa Cruz Notícias</h1></a>
+      <a href="https://github.com/starkland/santa-cruz-skill" target="_blank" rel="noopener noreferrer">github.com/starkland</a>
+    </div>
+  </header>
 
-	<p id="content"></p>
+  <section id="hero-section">
+    <div class="grid">
+      <h2>
+        Skill para ouvir as últimas notícias sobre o <a href="http://www.santacruzpe.com.br/" target="_blank" rel="noopener noreferrer">Santa Cruz Futebol Clube</a>
+      </h2>
+  
+      <ul>
+        <li><a href="#amazon-section">Dispositivos Amazon</a></li>
+        <li><a href="#google-section">Dispositivos Google</a></li>
+      </ul>
+    </div>
+  </section>
 
-	<script>
-		const content = document.querySelector('#content');
+  <section id="amazon-section" class="content-section">
+    <div class="grid">
+      <h2>Dispositivos Amazon</h2>
+      <p>Tenha uma experiência completa utilizando qualquer dispositivo com Alexa.</p>
+  
+      <div class="cta">
+        <figure>
+          <img src="./static/img/amazon-echo.png" alt="dispositivos amazon echo" />
+        </figure>
+  
+        <aside class="speech">
+          <p>"Alexa, habilite a skill do Santa Cruz Notícias"</p>
+          <button>Habilitar</button>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-		const displayContent = (str) => {
-			content.innerHTML = str;
-		}
+  <section id="google-section" class="content-section">
+    <div class="grid">
+      <h2>Dispositivos Google</h2>
+      <p>Tenha uma experiência completa utilizando qualquer dispositivo com Google assistant.</p>
+  
+      <div class="cta">
+        <figure>
+          <img src="./static/img/google-dot.jpg" alt="dispositivos google dot" />
+        </figure>
+  
+        <aside class="speech">
+          <p>"Ok Google, abrir Santa Cruz Notícias"</p>
+          <button>Habilitar</button>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-		const getData = () => {
-			const API_URL = 'https://santa-cruz-skill.herokuapp.com/santa-cruz';
+  <section id="news-section">
+    <div class="grid">
+      <h2>Últimas Notícias</h2>
+  
+      <!-- <p id="content"></p> -->
+  
+      <ul>
+        <li>
+          <span>12.08.2021</span>
+          <p>Santa Cruz treina mais uma vez, em dia de chuva.</p>
+        </li>
+  
+        <li>
+          <span>12.08.2021</span>
+          <p>Santa Cruz treina mais uma vez, em dia de chuva.</p>
+        </li>
+  
+        <li>
+          <span>12.08.2021</span>
+          <p>Santa Cruz treina mais uma vez, em dia de chuva.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-			const options = {
-				method: 'GET',
-				headers: {
-					Accept: 'application/json',
-				}
-			};
+  <footer id="footer">
+    <div class="grid">
+      <p>© 2021 | All rights reserved.</p>
+    </div>
+  </footer>
 
-			const request = fetch(API_URL, options);
-
-			return request
-				.then((response) => {
-					return response.json()
-				})
-				.then(data => {
-					const { payload } = data
-					displayContent(payload.content)
-				})
-				.catch((e) => {
-					console.info("there is an error:", e)
-				});
-		}
-
-		getData()
-	</script>
+  <!-- <script async src="./static/main.js"></script> -->
 </body>
 </html>
