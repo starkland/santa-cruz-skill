@@ -13,7 +13,7 @@ const httpGet = () => {
     var options = {
         host: 'santa-cruz-skill.herokuapp.com',
         port: 443,
-        path: '/santa-cruz',
+        path: '/news',
         method: 'GET',
     };
 
