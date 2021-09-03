@@ -2,7 +2,7 @@
 
 > POC to learn more about how to build alexa skills.
 
-- [Live API](https://santa-cruz-skill.herokuapp.com/santa-cruz)
+- [Live API](https://santa-cruz-skill.herokuapp.com/news)
 - [Test you request using Postman](https://documenter.getpostman.com/view/64448/TzzGJEJH)
 
 ## How to Use
@@ -25,17 +25,18 @@ The action `GetFactIntent` will accept these values as valid entries: `ultimas n
 
 This is the **second layer** of the skill. Built using [Fastify](https://www.fastify.io/), it is responsible for start a nodejs server, fetch the content and then return a JSON with the following structure:
 
+In order to fetch the latest news regarding the soccer team, we exposed `/news` endpoint.
+
 ```json
 {
-	"path": "santa-cruz",
+	"path": "news",
 	"payload": {
-		"content": "Here is the data.",
+		"content": "Here is the news formatted to speech.",
+        "contentMapped": [{ "date": "02/09", "text": "Here is the news title" }],
 		"length": 1
 	}
 }
 ```
-
-In order to fetch the latest news regarding a soccer team, we exposed `/santa-cruz` endpoint.
 
 ### lambda
 
