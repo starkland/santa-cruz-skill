@@ -55,5 +55,6 @@ const formatPayload = (payload) => {
 }
 
 module.exports = {
-	formatPayload
+	formatPayload,
+	MAX_QTD_ARTICLES
 }
