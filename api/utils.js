@@ -21,7 +21,7 @@ const mapContent = (arr) => {
 	const mapped = arr.map((el) => {
 		const { month, day } = extractMonthAndDay(el.match(datesRegex)[0])
 		const year = new Date().getFullYear()
-		const fullDate = `${day}/${month}/${year}`
+		const fullDate = `${month}/${day}/${year}`
 
 		return {
 			date: formatDate(fullDate),
