@@ -1,12 +1,10 @@
 const fetch = require('node-fetch')
-const cheerio = require('cheerio')
 const fastify = require('fastify')({ logger: true })
 
-const MAX_QTD_ARTICLES = 6
+const { formatPayload, MAX_QTD_ARTICLES } = require('./utils')
+
 const PORT = (process.env.PORT || 3000)
 const HOST = (process.env.HOST || '0.0.0.0')
-
-const datesRegex = new RegExp(/[0-9]{2}\D+[0-9]{2}/g) // remove dates from string
 
 const buildResourceURL = () => {
 	const searchParams = new URLSearchParams({
@@ -26,39 +24,6 @@ const getData = () => {
 	const RESOURCE_URL = buildResourceURL()
 
 	return fetch(RESOURCE_URL, options).then(res => res.text()).then(body => body)
-}
-
-const mapContent = (arr) => {
-	const mapped = arr.map((el) => {
-		return {
-			date: el.match(datesRegex)[0],
-			text: el.replace(datesRegex, '').trim()
-		}
-	})
-
-	return mapped
-}
-
-const normalizeToSpeech = (arr) => {
-	return arr.map(({ text, date }) => `Notícia do dia ${date}: ${text}`).join('. ').trim()
-}
-
-const formatPayload = (payload) => {
-	const $ = cheerio.load(payload, {
-		xml: { normalizeWhitespace: true }
-	})
-
-	const text = $('.texto').text()
-	const textSplitted = text.split('  ')
-
-	const contentMapped = mapContent(textSplitted)
-	const content = normalizeToSpeech(contentMapped)
-
-	return {
-		contentMapped,
-		content,
-		length: MAX_QTD_ARTICLES
-	}
 }
 
 // Declare a route
