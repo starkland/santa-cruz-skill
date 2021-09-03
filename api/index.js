@@ -28,9 +28,7 @@ const getData = () => {
 	return fetch(RESOURCE_URL, options).then(res => res.text()).then(body => body)
 }
 
-const mapContent = (str) => {
-	const arr = str.split('  ')
-
+const mapContent = (arr) => {
 	const mapped = arr.map((el) => {
 		return {
 			date: el.match(datesRegex)[0],
@@ -41,8 +39,8 @@ const mapContent = (str) => {
 	return mapped
 }
 
-const normalizeToSpeech = (str) => {
-	return str.replace(datesRegex, '').split('  ').slice(1, 7).join('. ')
+const normalizeToSpeech = (arr) => {
+	return arr.map(({ text, date }) => `Notícia do dia ${date}: ${text}`).join('. ').trim()
 }
 
 const formatPayload = (payload) => {
@@ -51,9 +49,10 @@ const formatPayload = (payload) => {
 	})
 
 	const text = $('.texto').text()
+	const textSplitted = text.split('  ')
 
-	const contentMapped = mapContent(text)
-	const content = normalizeToSpeech(text)
+	const contentMapped = mapContent(textSplitted)
+	const content = normalizeToSpeech(contentMapped)
 
 	return {
 		contentMapped,
