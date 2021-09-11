@@ -48,7 +48,7 @@ const LaunchRequestHandler = {
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
-            .withShouldEndSession(false)
+            .withShouldEndSession(true)
             .getResponse();
     }
 };
